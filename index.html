@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Lost & Found Quiz Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Campus Quiz</h1>
+            <p>Lost & Found • DOM Mastery</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchView('quiz')">Take Quiz</button>
+            <button class="nav-tab" onclick="switchView('admin')">Admin</button>
+            <button class="nav-tab" onclick="switchView('history')">History</button>
+        </div>
+
+        <div class="content">
+            <div id="quiz-view" class="view active">
+                <div id="quiz-start">
+                    <h2 style="margin-bottom: 20px; font-weight: 900; font-size: 2rem;">Ready?</h2>
+                    <p style="margin-bottom: 30px;">Test your understanding of DOM concepts.</p>
+                    <div style="background: #fff; border: 2px solid #000; padding: 20px; margin-bottom: 30px; box-shadow: 4px 4px 0px #ddd;">
+                        <p><strong>Total Questions:</strong> <span id="total-questions">0</span></p>
+                    </div>
+                    <button class="btn btn-primary" onclick="startQuiz()">Start Quiz</button>
+                </div>
+                <div id="quiz-active" style="display: none;">
+                    <div id="quiz-results"></div>
+                    <div id="questions-container"></div>
+                    <button id="submit-btn" class="btn btn-success" onclick="submitQuiz()" style="display: none; width: 100%; margin-top: 20px;">Submit Answers</button>
+                </div>
+            </div>
+
+            <div id="admin-view" class="view">
+                <h2 style="margin-bottom: 20px;">Admin Panel</h2>
+                <div id="admin-alert"></div>
+                <div style="background: #fff; border: 3px solid #000; padding: 25px; margin-bottom: 40px; box-shadow: 8px 8px 0px #eee;">
+                    <h3 style="margin-bottom: 20px; text-decoration: underline; text-decoration-thickness: 3px;">+ Add Question</h3>
+                    <form id="add-form" onsubmit="addQuestion(event)">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <input type="text" id="category" placeholder="e.g. HTML" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Question</label>
+                            <textarea id="question" rows="2" placeholder="What is..." required></textarea>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div class="form-group">
+                                <label>Option A</label>
+                                <input type="text" id="opt0" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Option B</label>
+                                <input type="text" id="opt1" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Option C</label>
+                                <input type="text" id="opt2" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Option D</label>
+                                <input type="text" id="opt3" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Correct Answer</label>
+                            <select id="correct" required>
+                                <option value="">Select Correct Option...</option>
+                                <option value="0">Option A</option>
+                                <option value="1">Option B</option>
+                                <option value="2">Option C</option>
+                                <option value="3">Option D</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Explanation</label>
+                            <textarea id="explanation" rows="2" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Add Question</button>
+                    </form>
+                </div>
+                <h3>Question Bank (<span id="q-count">0</span>)</h3>
+                <div id="admin-list" style="margin-top: 20px;"></div>
+            </div>
+
+            <div id="history-view" class="view">
+                <h2 style="margin-bottom: 20px;">Your Stats</h2>
+                <div id="history-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
